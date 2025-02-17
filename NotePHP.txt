@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire de Paiement</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="contact" id="contact">
+        
+    <nav class="navbar">
+    <a href="#"><img src="../images/logo/ohmyfood.png" alt="" height="40" width="200"></a>
+    <div class ="nav-list">
+        <ul>
+            <li><a href="index.php"><strong>Acceuil</strong></a></li> 
+            <li><a href="detail.php"><strong>Menu</strong></a></li>
+            <li><a href="Paiement/index.html">Paiement</a></li>
+        </ul>
+    </div>
+</nav>>
+    </div>
+
+
+    <?php
+$username = "root";
+$servername = "127.0.0.1";
+$password = "";
+$dbname = "panier";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Erreur de connexion à la base de donnée : ". $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Prenom = $_POST['firstName'];
+    $Nom = $_POST['lastName'];
+    $Mode_de_Paiement = $_POST['paymentMethod'];
+
+    // Improve security by using prepared statements
+    $stmt = $conn->prepare("INSERT INTO paiement (Prenom, Nom, Mode_de_Paiement) VALUES (?,?,?)");
+    $stmt->bind_param("sss", $Prenom, $Nom, $Mode_de_Paiement);
+
+    if ($stmt->execute()) {
+        $message = "Nous avons enregistré vos informations !😉";
+    } else {
+        echo "Error: <br>" . $conn->error;
+    }
+    $stmt->close();
+}
+$conn->close();
+?>
+
+<div class="container">
+  <h2>Formulaire de Paiement</h2>
+  <form id="paymentForm" method="POST">
+    <div class="form-group">
+      <label for="firstName">Prenom:</label>
+      <input type="text" id="Prenom" name="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom:</label>
+      <input type="text" id="Nom" name="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="paymentMethod">Mode de Paiement:</label>
+      <select id="paymentMethod" name="paymentMethod">
+        <option value="Espèces" id="Espèces">Espèces</option>
+        <option value="card" id="Carte de Crédit">Carte de Crédit</option>
+      </select>
+    </div>
+    <div class="form-group card-details" style="display: none;">
+      <button id="showCardDetails">Entrez les Détails de la Carte</button>
+    </div>
+    <button type="submit">Payer</button>
+  </form>
+</div>
+<div class="message">
+    <?php if (isset($message)): ?>
+        <p><?php echo $message; ?></p>
+    <?php endif; ?>
+</div>
+
+<div id="cardDetailsModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Entrez les Détails de la Carte</h2>
+    <div class="form-group">
+      <label for="cardNumber">Numéro de Carte:</label>
+      <input type="text" id="cardNumber" name="cardNumber" required>
+    </div>
+    <div class="form-group">
+      <label for="expiryDate">Date d'Expiration:</label>
+      <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+    </div>
+    <div class="form-group">
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv" required>
+    </div>
+    <button id="submitCardDetails">Valider</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+Je veux lier la classe cardDetailsModal a une autre base de donnée banque qui a pour table compte et faire une comparaison des données entrer dans Numéro de carte date d'expiration et CVV avec ceux de la table compte si un des champs ne correspond pas dire quel champ est faux sinon envoyé un message correcte

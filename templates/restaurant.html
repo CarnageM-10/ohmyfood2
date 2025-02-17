@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ restaurant.nom }} - OhMyFood{% endblock %}
+
+{% block content %}
+<div class="restaurant-detail">
+    <h1>{{ restaurant.nom }}</h1>
+    <p class="description">{{ restaurant.description }}</p>
+
+    <div class="menu-grid">
+        {% for plat in restaurant.plats %}
+        <div class="plat-card">
+            <div class="plat-info">
+                <h3>{{ plat.nom }}</h3>
+                <p>{{ plat.description }}</p>
+                <p class="prix">{{ plat.prix }}€</p>
+            </div>
+            <form action="{{ url_for('ajouter_panier') }}" method="POST">
+                <input type="hidden" name="plat_id" value="{{ plat.id }}">
+                <button type="submit" class="btn">Ajouter au panier</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

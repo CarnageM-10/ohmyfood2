@@ -1,0 +1,76 @@
+.navbar {
+    position: absolute;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: pink;
+    height: 50px;
+}
+
+.navbar a{
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.navbar .nav-list ul{
+    display: flex;
+    
+}
+.navbar .nav-list ul li{
+    margin: 0 25px;
+    list-style-type: none;
+}
+.navbar .nav-list ul li.active a{
+    color: pink;
+    font-weight: 600;
+}
+.navbar .nav-list ul li a:hover{
+    color: #111;
+    text-decoration:underline;
+}
+@media screen and(max-width: 900px){
+    .nav-list{
+        display: none;
+    }
+}
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
+    background-image: url(R.jpg);
+    background-position: center center;
+  }
+.f label{
+    color: #fff;
+}
+
+  .beau-bouton {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .beau-bouton:hover {
+    background-color: #3e8e41;
+  }
+  
+  .beau-bouton:active {
+    background-color: #2b662a;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+

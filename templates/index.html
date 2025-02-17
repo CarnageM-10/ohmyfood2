@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}OhMyFood - Accueil{% endblock %}
+
+{% block content %}
+<h1>Bienvenue sur OhMyFood</h1>
+
+<div class="restaurant-grid">
+    {% for restaurant in restaurants %}
+    <div class="restaurant-card">
+        <img src="{{ url_for('static', filename='images/' + restaurant.nom.lower() + '.jpg') }}" alt="{{ restaurant.nom }}">
+        <div class="restaurant-info">
+            <h2>{{ restaurant.nom }}</h2>
+            <p>{{ restaurant.description }}</p>
+            <a href="{{ url_for('restaurant_detail', restaurant_id=restaurant.id) }}" class="btn">Voir le menu</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
