@@ -5,24 +5,29 @@
 {% block content %}
 <h1>Votre Panier</h1>
 
-{% if items %}
+{% if plats %}
     <div class="panier-items">
-        {% for item in items %}
+        {% for item in plats %}
         <div class="panier-item">
             <div class="item-info">
                 <h3>{{ item.plat.nom }}</h3>
-                <p>{{ item.plat.prix }}€ x {{ item.quantite }}</p>
+                <p>{{ '{:.2f}'.format(item.plat.prix) }}€ x {{ item.quantite }}</p>
+                <form action="{{ url_for('supprimer_commande', plat_id=item.plat.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-supprimer">
+                        <img src="{{ url_for('static', filename='images/trash.png') }}" alt="Supprimer" style="width: 20px; height: 20px;">
+                    </button>
+                </form>
             </div>
             <div class="item-total">
-                {{ item.plat.prix * item.quantite }}€
+                {{ '{:.2f}'.format(item.plat.prix * item.quantite) }}€
             </div>
         </div>
         {% endfor %}
     </div>
 
     <div class="panier-total">
-        <h2>Total: {{ total }}€</h2>
-        <a href="#" class="btn btn-primary">Passer la commande</a>
+        <h2>Total: {{ '{:.2f}'.format(total) }}€</h2>
+        <a href="{{ url_for('passer_commande', total=total) }}" class="btn btn-primary">Passer la commande</a>
     </div>
 {% else %}
     <p>Votre panier est vide</p>

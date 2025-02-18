@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Carte Bancaire - OhMyFood{% endblock %}
+
+{% block content %}
+<div class="carte-container">
+    <h1>Informations de la Carte Bancaire</h1>
+    
+    <form class="carte-form" method="POST">
+        <div class="form-group">
+            <label for="nomBanque">Nom de la Banque</label>
+            <input type="text" id="nomBanque" name="nomBanque" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" required maxlength="3" pattern="\d{3}" title="Veuillez entrer un CVV de 3 chiffres.">
+        </div>
+        
+        <div class="form-group">
+            <label for="dateExp">Date d'Expiration (MM/AA)</label>
+            <input type="text" id="dateExp" name="dateExp" required placeholder="MM/AA" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Veuillez entrer une date au format MM/AA." oninput="formatDate(this)">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="numCard">Numéro de Carte</label>
+            <input type="text" id="numCard" name="numCard" required maxlength="13" pattern="\d{13}" title="Veuillez entrer un numéro de carte de 13 chiffres.">
+        </div>
+        
+        <div class="form-group">
+            <label for="montantCard">Montant</label>
+            <input type="number" id="montantCard" name="montantCard" required>
+        </div>
+        
+        <button type="submit" class="btn">Enregistrer</button>
+    </form>
+</div>
+
+<style>
+    .carte-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button.btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button.btn:hover {
+        background-color: #218838;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+    }
+</style>
+<script>
+    function formatDate(input) {
+        // Supprime tous les caractères sauf les chiffres
+        let value = input.value.replace(/\D/g, '');
+        
+        // Ajoute le séparateur '/' après les deux premiers chiffres
+        if (value.length > 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4);
+        }
+        
+        // Limite la longueur à 5 caractères (MM/AA)
+        input.value = value.slice(0, 5);
+    }
+</script>
+{% endblock %}

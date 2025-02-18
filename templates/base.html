@@ -9,10 +9,17 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="{{ url_for('index') }}">Accueil</a>
-            <a href="{{ url_for('voir_panier') }}">Panier</a>
-            <a href="{{ url_for('contact') }}">Contact</a>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo/ohmyfood.png') }}" alt="OhMyFood Logo">
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-item">Restaurants</a>
+                <a href="{{ url_for('voir_panier') }}" class="nav-item">Panier</a>
+                <a href="{{ url_for('contact') }}" class="nav-item">Contact</a>
+                <a href="{{ url_for('carte') }}" class="nav-item">Ajouter une carte</a>
+                <a href="{{ url_for('carte_detail') }}" class="nav-item">Carte(s)</a> 
+            </div>
         </nav>
     </header>
 

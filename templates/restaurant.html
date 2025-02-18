@@ -10,10 +10,11 @@
     <div class="menu-grid">
         {% for plat in restaurant.plats %}
         <div class="plat-card">
+            <img src="{{ url_for('static', filename=plat.image) }}" alt="{{ plat.nom }}" class="plat-image">
             <div class="plat-info">
                 <h3>{{ plat.nom }}</h3>
                 <p>{{ plat.description }}</p>
-                <p class="prix">{{ plat.prix }}€</p>
+                <p class="prix">{{ '{:.2f}'.format(plat.prix) }}€</p>  <!-- Formatage du prix -->
             </div>
             <form action="{{ url_for('ajouter_panier') }}" method="POST">
                 <input type="hidden" name="plat_id" value="{{ plat.id }}">

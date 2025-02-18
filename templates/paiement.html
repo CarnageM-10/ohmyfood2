@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Paiement - OhMyFood{% endblock %}
+
+{% block content %}
+<h1>Informations de Paiement</h1>
+
+<form action="{{ url_for('passer_commande') }}" method="POST">
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+    <div>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required>
+    </div>
+    <div>
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required maxlength="3" pattern="\d{3}" title="Veuillez entrer un CVV de 3 chiffres.">
+    </div>
+    <div>
+        <label for="dateExp">Date d'Expiration (MM/AA):</label>
+        <input type="text" id="dateExp" name="dateExp" required placeholder="MM/AA" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Veuillez entrer une date au format MM/AA.">
+    </div>
+    <div>
+        <label for="numCard">Numéro de Carte:</label>
+        <input type="text" id="numCard" name="numCard" required maxlength="16" pattern="\d{13}" title="Veuillez entrer un numéro de carte de 13 chiffres.">
+    </div>
+    <button type="submit" class="btn">Valider le Paiement</button>
+</form>
+
+{% if get_flashed_messages() %}
+    <ul>
+        {% for message in get_flashed_messages(with_categories=True) %}
+            <li class="flash-message {% if message[0] == 'error' %}error{% endif %}">{{ message[1] }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<style>
+    .flash-message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.flash-message.error {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb; 
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724; 
+    border: 1px solid #c3e6cb;
+}
+</style>
+{% endblock %}

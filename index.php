@@ -40,20 +40,20 @@
         </div>
         <div class="images">
             <h2 class="Fonctionnement">Restaurants</h2>
-            <a href="detail.php"><button><img src="Alkimia/Alkimia.jpeg"
+            <a href="detail.php"><button><img src="/ohmyfood2/images/restaurants/alkimia.jpg"
                         alt="" width="500" height="150">
                     <div class="men">Alkimia</div>
                     <div class="acco"><br>Rte des almadies</div></a>
             </button>
-            <a href="plancha.php"><button><img src="Plancha/plancha.jpeg" alt="" width="500" height="150">
+            <a href="plancha.php"><button><img src="/ohmyfood2/images/restaurants/plancha.jpg" alt="" width="500" height="150">
                 <div class="men">La Plancha</div>
                 <div class="acco"><br>44 rue Wagane Diouf, Dakar</div></a>
             </button>
-            <a href="tandem.php"><button><img src="tandem/tandem.jpeg" alt="" width="500" height="150">
+            <a href="tandem.php"><button><img src="/ohmyfood2/images/restaurants/tandem.jpg" alt="" width="500" height="150">
                 <div class="men">Le Tandem</div>
                 <div class="acco"><br>Nord Foire</div></a>
             </button>
-            <a href="lagon.php"><button><img src="images/restaurants/louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg" alt="" width="500"
+            <a href="lagon.php"><button><img src="/ohmyfood2/images/restaurants/lagon.jpg" alt="" width="500"
                     height="150">
                 <div class="men">Le Lagon 1</div>
                 <div class="acco"><br>Route de la corniche est</div></a>
